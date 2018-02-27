@@ -17,6 +17,14 @@ public class MoleGrid extends javax.swing.JPanel {
     public MoleGrid() {
         initComponents();
     }
+    
+    public void modifyCell(int c){
+        //receives int and modifies cell
+    }
+    
+    public void resetGrid(){
+        //resets cells values
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
