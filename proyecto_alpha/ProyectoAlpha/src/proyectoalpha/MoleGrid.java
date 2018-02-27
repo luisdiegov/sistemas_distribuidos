@@ -1,29 +1,76 @@
+package proyectoalpha;
+
+import java.awt.Color;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyectoalpha;
 
 /**
  *
- * @author LBRENESV
+ * @author ldv
  */
-public class MoleGrid extends javax.swing.JPanel {
+public class MoleGrid extends javax.swing.JFrame {
 
     /**
-     * Creates new form interfaz
+     * Creates new form NewJFrame
      */
     public MoleGrid() {
         initComponents();
     }
     
-    public void modifyCell(int c){
-        //receives int and modifies cell
+    public void reset(){
+        Color c = new Color(249,249,248);
+        
+        jButton1.setBackground(c);
+        jButton2.setBackground(c);
+        jButton3.setBackground(c);
+        jButton4.setBackground(c);
+        jButton5.setBackground(c);
+        jButton6.setBackground(c);
+        jButton7.setBackground(c);
+        jButton8.setBackground(c);
+        jButton9.setBackground(c);
+                
     }
     
-    public void resetGrid(){
-        //resets cells values
+    public void setCell(int cellNum){
+        
+        switch (cellNum){
+            case 1:
+                jButton1.setBackground(Color.red);
+                break;
+             case 2:
+                jButton2.setBackground(Color.red);
+                break;
+             case 3:
+                jButton3.setBackground(Color.red);
+                break;
+             case 4:
+                jButton4.setBackground(Color.red);
+                break;
+             case 5:
+                jButton5.setBackground(Color.red);
+                break;
+             case 6:
+                jButton6.setBackground(Color.red);
+                break;
+             case 7:
+                jButton7.setBackground(Color.red);
+                break;
+             case 8:
+                jButton8.setBackground(Color.red);
+                break;
+             case 9:
+                jButton9.setBackground(Color.red);
+                break;
+             default:
+                this.reset();
+                break;
+                
+        }
     }
 
     /**
@@ -35,183 +82,149 @@ public class MoleGrid extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        texto = new javax.swing.JLabel();
-        b1_1 = new javax.swing.JButton();
-        b2_1 = new javax.swing.JButton();
-        b3_1 = new javax.swing.JButton();
-        b1_2 = new javax.swing.JButton();
-        b1_3 = new javax.swing.JButton();
-        b2_2 = new javax.swing.JButton();
-        b2_3 = new javax.swing.JButton();
-        b3_3 = new javax.swing.JButton();
-        b3_2 = new javax.swing.JButton();
-        points = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
 
-        texto.setText("Puntaje:");
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        b1_1.setBackground(new java.awt.Color(255, 255, 255));
-        b1_1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        b1_1.setText("(1,1)");
-        b1_1.setAlignmentY(0.0F);
-        b1_1.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        b1_1.setIconTextGap(0);
-        b1_1.setMargin(new java.awt.Insets(1, 1, 1, 1));
-        b1_1.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setText("b1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                b1_1ActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
-        b2_1.setBackground(new java.awt.Color(255, 255, 255));
-        b2_1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        b2_1.setText("(2,1)");
-        b2_1.setAlignmentY(0.0F);
-        b2_1.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        b2_1.setIconTextGap(0);
-        b2_1.setMargin(new java.awt.Insets(1, 1, 1, 1));
-        b2_1.addActionListener(new java.awt.event.ActionListener() {
+        jButton2.setText("b2");
+
+        jButton3.setText("b3");
+
+        jButton4.setText("b4");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                b2_1ActionPerformed(evt);
+                jButton4ActionPerformed(evt);
             }
         });
 
-        b3_1.setBackground(new java.awt.Color(255, 255, 255));
-        b3_1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        b3_1.setText("(3,1)");
-        b3_1.setAlignmentY(0.0F);
-        b3_1.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        b3_1.setIconTextGap(0);
-        b3_1.setMargin(new java.awt.Insets(1, 1, 1, 1));
+        jButton5.setText("b5");
 
-        b1_2.setBackground(new java.awt.Color(255, 255, 255));
-        b1_2.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        b1_2.setText("(1,2)");
-        b1_2.setAlignmentY(0.0F);
-        b1_2.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        b1_2.setIconTextGap(0);
-        b1_2.setMargin(new java.awt.Insets(1, 1, 1, 1));
+        jButton6.setText("b6");
 
-        b1_3.setBackground(new java.awt.Color(255, 255, 255));
-        b1_3.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        b1_3.setText("(1,3)");
-        b1_3.setToolTipText("");
-        b1_3.setAlignmentY(0.0F);
-        b1_3.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        b1_3.setIconTextGap(0);
-        b1_3.setMargin(new java.awt.Insets(1, 1, 1, 1));
+        jButton7.setText("b7");
 
-        b2_2.setBackground(new java.awt.Color(255, 255, 255));
-        b2_2.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        b2_2.setText("(2,2)");
-        b2_2.setAlignmentY(0.0F);
-        b2_2.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        b2_2.setIconTextGap(0);
-        b2_2.setMargin(new java.awt.Insets(1, 1, 1, 1));
+        jButton8.setText("b8");
 
-        b2_3.setBackground(new java.awt.Color(255, 255, 255));
-        b2_3.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        b2_3.setText("(2,3)");
-        b2_3.setAlignmentY(0.0F);
-        b2_3.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        b2_3.setIconTextGap(0);
-        b2_3.setMargin(new java.awt.Insets(1, 1, 1, 1));
+        jButton9.setText("b9");
 
-        b3_3.setBackground(new java.awt.Color(255, 255, 255));
-        b3_3.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        b3_3.setText("(3,3)");
-        b3_3.setAlignmentY(0.0F);
-        b3_3.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        b3_3.setIconTextGap(0);
-        b3_3.setMargin(new java.awt.Insets(1, 1, 1, 1));
-
-        b3_2.setBackground(new java.awt.Color(255, 255, 255));
-        b3_2.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        b3_2.setText("(3,2)");
-        b3_2.setAlignmentY(0.0F);
-        b3_2.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        b3_2.setIconTextGap(0);
-        b3_2.setMargin(new java.awt.Insets(1, 1, 1, 1));
-
-        points.setText("0");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(64, 64, 64)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton7)
+                    .addComponent(jButton4)
+                    .addComponent(jButton1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(b3_1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(b3_2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(b3_3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButton3))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(b2_1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(b2_2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(b2_3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButton6))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(texto)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(b1_1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(b1_2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(b1_3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(points))))
-                .addContainerGap(31, Short.MAX_VALUE))
+                        .addComponent(jButton9)))
+                .addContainerGap(225, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
+                .addGap(84, 84, 84)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(texto, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(points))
+                    .addComponent(jButton1)
+                    .addComponent(jButton2)
+                    .addComponent(jButton3))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(b1_1, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
-                    .addComponent(b1_2, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
-                    .addComponent(b1_3, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jButton4)
+                    .addComponent(jButton5)
+                    .addComponent(jButton6))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(b2_1, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
-                    .addComponent(b2_2, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
-                    .addComponent(b2_3, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(b3_1, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
-                    .addComponent(b3_2, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
-                    .addComponent(b3_3, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE))
-                .addGap(29, 29, 29))
+                    .addComponent(jButton7)
+                    .addComponent(jButton8)
+                    .addComponent(jButton9))
+                .addContainerGap(90, Short.MAX_VALUE))
         );
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void b2_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b2_1ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_b2_1ActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void b1_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b1_1ActionPerformed
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_b1_1ActionPerformed
+    }//GEN-LAST:event_jButton4ActionPerformed
 
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(MoleGrid.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(MoleGrid.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(MoleGrid.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(MoleGrid.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new MoleGrid().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton b1_1;
-    private javax.swing.JButton b1_2;
-    private javax.swing.JButton b1_3;
-    private javax.swing.JButton b2_1;
-    private javax.swing.JButton b2_2;
-    private javax.swing.JButton b2_3;
-    private javax.swing.JButton b3_1;
-    private javax.swing.JButton b3_2;
-    private javax.swing.JButton b3_3;
-    private javax.swing.JLabel points;
-    private javax.swing.JLabel texto;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     // End of variables declaration//GEN-END:variables
 }

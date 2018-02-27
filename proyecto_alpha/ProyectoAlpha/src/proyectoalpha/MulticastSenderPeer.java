@@ -32,7 +32,7 @@ public class MulticastSenderPeer {
                 
                 Random rand = new Random();
                 int target;
-                String myMessage="Hello";
+                String myMessage;
                 
                 for(int i=0; i<10; i++){
                     myMessage = String.valueOf(rand.nextInt(9-1) + 1); //Generates int between 1-9

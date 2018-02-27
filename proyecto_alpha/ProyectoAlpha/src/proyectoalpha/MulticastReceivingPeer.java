@@ -25,14 +25,21 @@ public class MulticastReceivingPeer {
 	    	s = new MulticastSocket(6789);
 	   	s.joinGroup(group); 
                 MoleGrid mg = new MoleGrid();
+                mg.setVisible(true);
+                String message;
+                int cell;
 
 	    	byte[] buffer = new byte[1000];
- 	   	for(int i=0; i< 3; i++) {
+ 	   	for(int i=0; i< 10; i++) {
                     System.out.println("Waiting for messages");
                     DatagramPacket messageIn = 
 			new DatagramPacket(buffer, buffer.length);
  		    s.receive(messageIn);
- 		    System.out.println("Message: " + new String(messageIn.getData())+ " from: "+ messageIn.getAddress());
+                    mg.reset();
+                    message = new String(messageIn.getData());
+                    cell = Integer.valueOf(message.trim());
+                    mg.setCell(cell);
+ 		    System.out.println(message);
   	     	}
 	    	s.leaveGroup(group);		
  	    }
