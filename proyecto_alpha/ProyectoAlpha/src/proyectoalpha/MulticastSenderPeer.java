@@ -16,8 +16,10 @@ import java.net.SocketException;
  *
  * @author JGUTIERRGARC
  */
+import java.util.Random;
+
 public class MulticastSenderPeer {
-    	public static void main(String args[]){ 
+    	public static void main(String args[]) throws InterruptedException{ 
   	 
 	MulticastSocket s =null;
    	 try {
@@ -27,11 +29,20 @@ public class MulticastSenderPeer {
 	   	s.joinGroup(group); 
                 //s.setTimeToLive(10);
                 System.out.println("Messages' TTL (Time-To-Live): "+ s.getTimeToLive());
+                
+                Random rand = new Random();
+                int target;
                 String myMessage="Hello";
-                byte [] m = myMessage.getBytes();
-	    	DatagramPacket messageOut = 
-			new DatagramPacket(m, m.length, group, 6789);
-	    	s.send(messageOut);
+                
+                for(int i=0; i<10; i++){
+                    myMessage = String.valueOf(rand.nextInt(9-1) + 1); //Generates int between 1-9
+                    byte [] m = myMessage.getBytes();
+                    DatagramPacket messageOut = 
+                            new DatagramPacket(m, m.length, group, 6789);
+                    s.send(messageOut);
+                    Thread.sleep(3000);
+                }
+                
 
 	    	s.leaveGroup(group);		
  	    }
