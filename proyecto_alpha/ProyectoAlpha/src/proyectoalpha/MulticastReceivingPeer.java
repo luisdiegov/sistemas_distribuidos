@@ -24,6 +24,7 @@ public class MulticastReceivingPeer {
                 InetAddress group = InetAddress.getByName("228.5.6.7"); // destination multicast group 
 	    	s = new MulticastSocket(6789);
 	   	s.joinGroup(group); 
+                
 
 	    	byte[] buffer = new byte[1000];
  	   	for(int i=0; i< 3; i++) {

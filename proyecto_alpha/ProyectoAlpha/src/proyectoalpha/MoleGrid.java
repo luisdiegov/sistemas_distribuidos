@@ -9,12 +9,12 @@ package proyectoalpha;
  *
  * @author LBRENESV
  */
-public class interfaz extends javax.swing.JPanel {
+public class MoleGrid extends javax.swing.JPanel {
 
     /**
      * Creates new form interfaz
      */
-    public interfaz() {
+    public MoleGrid() {
         initComponents();
     }
 
