@@ -4,13 +4,14 @@
  * and open the template in the editor.
  */
 
-package proyectoalpha;
+package others;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
 import java.net.SocketException;
+import proyectAalpha.MoleGrid;
 
 /**
  *

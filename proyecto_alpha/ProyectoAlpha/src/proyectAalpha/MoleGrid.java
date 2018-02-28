@@ -1,4 +1,4 @@
-package proyectoalpha;
+package proyectAalpha;
 
 import java.awt.Color;
 
@@ -17,8 +17,15 @@ public class MoleGrid extends javax.swing.JFrame {
     /**
      * Creates new form NewJFrame
      */
-    public MoleGrid() {
+    private int clientId;
+    
+    public MoleGrid(int id) {
+        clientId = id;
         initComponents();
+    }
+
+    private MoleGrid() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     public void reset(){
@@ -34,6 +41,31 @@ public class MoleGrid extends javax.swing.JFrame {
         jButton8.setBackground(c);
         jButton9.setBackground(c);
                 
+    }
+    
+    public void enableAll(){
+        jButton1.setEnabled(true);
+        jButton2.setEnabled(true);
+        jButton3.setEnabled(true);
+        jButton4.setEnabled(true);
+        jButton5.setEnabled(true);
+        jButton6.setEnabled(true);
+        jButton7.setEnabled(true);
+        jButton8.setEnabled(true);
+        jButton9.setEnabled(true);
+        
+    }
+    
+    public void disableAll(){
+        jButton1.setEnabled(false);
+        jButton2.setEnabled(false);
+        jButton3.setEnabled(false);
+        jButton4.setEnabled(false);
+        jButton5.setEnabled(false);
+        jButton6.setEnabled(false);
+        jButton7.setEnabled(false);
+        jButton8.setEnabled(false);
+        jButton9.setEnabled(false);
     }
     
     public void setCell(int cellNum){
@@ -127,7 +159,7 @@ public class MoleGrid extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(64, 64, 64)
+                .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButton7)
                     .addComponent(jButton4)
@@ -146,12 +178,12 @@ public class MoleGrid extends javax.swing.JFrame {
                         .addComponent(jButton8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton9)))
-                .addContainerGap(225, Short.MAX_VALUE))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(84, 84, 84)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(46, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
@@ -166,7 +198,7 @@ public class MoleGrid extends javax.swing.JFrame {
                     .addComponent(jButton7)
                     .addComponent(jButton8)
                     .addComponent(jButton9))
-                .addContainerGap(90, Short.MAX_VALUE))
+                .addGap(23, 23, 23))
         );
 
         pack();

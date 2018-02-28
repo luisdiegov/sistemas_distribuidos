@@ -3,25 +3,29 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-package proyectoalpha;
+package proyectAalpha;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
 import java.net.SocketException;
+import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
- * @author JGUTIERRGARC
+ * @author ldv
  */
-import java.util.Random;
-
-public class MulticastSenderPeer {
-    	public static void main(String args[]) throws InterruptedException{ 
-  	 
-	MulticastSocket s =null;
+public class MoleLauncherThread extends Thread {
+    
+    public MoleLauncherThread(){
+        
+    }
+    
+    public void run(){
+        	MulticastSocket s =null;
    	 try {
                 
                 InetAddress group = InetAddress.getByName("228.5.6.7"); // destination multicast group 
@@ -34,7 +38,7 @@ public class MulticastSenderPeer {
                 int target;
                 String myMessage;
                 
-                for(int i=0; i<10; i++){
+                while(true){
                     myMessage = String.valueOf(rand.nextInt(9-1) + 1); //Generates int between 1-9
                     byte [] m = myMessage.getBytes();
                     DatagramPacket messageOut = 
@@ -44,16 +48,19 @@ public class MulticastSenderPeer {
                 }
                 
 
-	    	s.leaveGroup(group);		
+//	    	s.leaveGroup(group);		
  	    }
          catch (SocketException e){
              System.out.println("Socket: " + e.getMessage());
 	 }
          catch (IOException e){
              System.out.println("IO: " + e.getMessage());
-         }
+         } catch (InterruptedException ex) {
+            Logger.getLogger(MoleLauncherThread.class.getName()).log(Level.SEVERE, null, ex);
+        }
 	 finally {
             if(s != null) s.close();
         }
-    }		     
+    }
+    
 }
