@@ -20,7 +20,7 @@ import java.net.Socket;
 
 public class TCPServerThread extends Thread{
     
-    public int a;
+    public int[] counter = new int[10];
     
     public TCPServerThread(){
         
@@ -30,6 +30,7 @@ public class TCPServerThread extends Thread{
 	try{
 		int serverPort = 7896; 
 		ServerSocket listenSocket = new ServerSocket(serverPort);
+                Counter counter = new Counter(); //Score register
                 
                 
 		while(true) {
@@ -47,6 +48,7 @@ class Connection extends Thread {
 	DataInputStream in;
 	DataOutputStream out;
 	Socket clientSocket;
+        Counter counter = new Counter();
         
 	public Connection (Socket aClientSocket) {
 	    try {
@@ -61,8 +63,21 @@ class Connection extends Thread {
 	public void run(){
 	    try {			                 // an echo server
 		String data = in.readUTF();
-                data.split("\\s+");
+                String[] msg = data.split("\\s+"); //client_id, round, answer
+                data = "false";
+                
+                //if answer
+                //if counter.getRound()[round] i.e. first to answer that round
+                    //out a boolean hasWon
+                //counter[client_id]++
+                
+                if(Boolean.valueOf(msg[2])){
+                    counter.verifyWinner(Integer.valueOf(msg[0]), Integer.valueOf(msg[1]));
+                    data = String.valueOf(counter.hasWon(Integer.valueOf(msg[0])));
+                }
+                
                 System.out.println("Message received from: " + clientSocket.getRemoteSocketAddress());
+                
 		out.writeUTF(data);
 	    } 
             catch(EOFException e) {

@@ -17,15 +17,28 @@ public class MoleGrid extends javax.swing.JFrame {
     /**
      * Creates new form NewJFrame
      */
+    private static int UNIQUE_ID = 0;
     private int clientId;
+    private int roundNo;
+    private Won won = new Won();
     
-    public MoleGrid(int id) {
-        clientId = id;
+    public MoleGrid() {
+        clientId =  UNIQUE_ID++;
         initComponents();
     }
-
-    private MoleGrid() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+    public void sendMessage(){
+        
+//        String message;
+//        TCPClientThread tcpct = new TCPClientThread();
+//        
+//        
+//        
+//        tcpct.run(message, won);
+//        
+//        if(won.hasWon()){
+//            System.out.println("GANASTE!");
+//        }
     }
     
     public void reset(){
@@ -105,6 +118,15 @@ public class MoleGrid extends javax.swing.JFrame {
         }
     }
 
+    public int getRoundNo() {
+        return roundNo;
+    }
+
+    public void setRoundNo(int roundNo) {
+        this.roundNo = roundNo;
+    }
+    
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

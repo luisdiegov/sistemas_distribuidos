@@ -9,13 +9,16 @@ import java.net.*;
 import java.io.*;
 
 public class TCPClientThread extends Thread{
+    public String message;
+    public Won won;
     
-    TCPClientThread(){
-        
+    TCPClientThread(String msg, Won w){
+        message = msg;
+        won = w;
     }
         
 
-    public  void run (String message) {
+    public  void run () {
 
 	Socket s = null;
 	    try {
@@ -28,7 +31,10 @@ public class TCPClientThread extends Thread{
 			new DataOutputStream( s.getOutputStream());
 		out.writeUTF(message);        	// UTF is a string encoding 
                 
-		String data = in.readUTF();	      
+		String data = in.readUTF();
+                if(Boolean.valueOf(data)){
+                    won.setWon(true);
+                }
                 System.out.println("Received: "+ data) ;      
        	    } 
             catch (UnknownHostException e) {

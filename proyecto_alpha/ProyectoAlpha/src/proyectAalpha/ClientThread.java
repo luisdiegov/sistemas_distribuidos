@@ -16,11 +16,10 @@ import java.net.SocketException;
  * @author ldv
  */
 public class ClientThread extends Thread{
-    private static int UNIQUE_ID;
+
     private int clientId;
     
     public ClientThread(){
-        clientId =  UNIQUE_ID++;
         
     }
     
@@ -32,10 +31,11 @@ public class ClientThread extends Thread{
                 InetAddress group = InetAddress.getByName("228.5.6.7"); // destination multicast group 
 	    	s = new MulticastSocket(6789);
 	   	s.joinGroup(group); 
-                MoleGrid mg = new MoleGrid(clientId);
+                MoleGrid mg = new MoleGrid();
                 mg.setVisible(true);
                 String message;
-                int cell;
+                String tokenized[];
+                int cell, roundNumber;
 
 	    	byte[] buffer = new byte[1000];
  	   	for(int i=0; i< 100; i++) {
@@ -44,10 +44,15 @@ public class ClientThread extends Thread{
 			new DatagramPacket(buffer, buffer.length);
  		    s.receive(messageIn);
                     mg.reset();
-                    message = new String(messageIn.getData());
-                    cell = Integer.valueOf(message.trim());
+                    message = new String(messageIn.getData()); //cell, roundNumber
+                    tokenized = message.split("\\s+");
+//                    System.out.println("0: " + tokenized[0] + " 1: " + tokenized[1]);
+                    System.out.println("length " + tokenized.length);
+                    cell = Integer.valueOf(tokenized[0]);
+                    roundNumber = Integer.valueOf(tokenized[1].trim());
                     mg.setCell(cell);
- 		    System.out.println(message);
+                    mg.setRoundNo(roundNumber);
+// 		    System.out.println(message);
   	     	}
 	    	s.leaveGroup(group);		
  	    }
