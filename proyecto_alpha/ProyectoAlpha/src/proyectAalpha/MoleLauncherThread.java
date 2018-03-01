@@ -47,7 +47,7 @@ public class MoleLauncherThread extends Thread {
                             new DatagramPacket(m, m.length, group, 6789);
                     s.send(messageOut);
                     roundNumber++;
-                    Thread.sleep(5000);
+                    Thread.sleep(2000);
                 }
                 
 

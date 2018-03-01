@@ -44,19 +44,22 @@ public class ClientThread extends Thread{
 			new DatagramPacket(buffer, buffer.length);
  		    s.receive(messageIn);
                     mg.reset();
+                    mg.enableAll();
                     message = new String(messageIn.getData()); //cell, roundNumber
                     tokenized = message.split("\\s+");
 //                    System.out.println("0: " + tokenized[0] + " 1: " + tokenized[1]);
-                    System.out.println("length " + tokenized.length);
+//                    System.out.println("length " + tokenized.length);
                     cell = Integer.valueOf(tokenized[0]);
                     roundNumber = Integer.valueOf(tokenized[1].trim());
                     mg.setCell(cell);
+                    mg.setAnswer(cell);
                     mg.setRoundNo(roundNumber);
+                    System.out.println(cell);
 // 		    System.out.println(message);
   	     	}
 	    	s.leaveGroup(group);		
  	    }
-         catch (SocketException e){
+         catch (SocketException e){ 
              System.out.println("Socket: " + e.getMessage());
 	 }
          catch (IOException e){

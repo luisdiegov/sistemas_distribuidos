@@ -11,6 +11,8 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -20,8 +22,9 @@ import java.net.Socket;
 
 public class TCPServerThread extends Thread{
     
-    public int[] counter = new int[10];
-    
+////    public int[] counter = new int[10];
+    private Counter counter = new Counter();// Class that mainains registry  
+   
     public TCPServerThread(){
         
     }
@@ -30,11 +33,11 @@ public class TCPServerThread extends Thread{
 	try{
 		int serverPort = 7896; 
 		ServerSocket listenSocket = new ServerSocket(serverPort);
-                Counter counter = new Counter(); //Score register
+//                Counter counter = new Counter(); //Score register
                 
                 
 		while(true) {
-			System.out.println("Waiting for messages..."); 
+			System.out.println("Waiting for messages...TCP"); 
                         Socket clientSocket = listenSocket.accept();  // Listens for a connection to be made to this socket and accepts it. The method blocks until a connection is made. 
 			Connection c = new Connection(clientSocket);
                         c.start();
@@ -48,7 +51,8 @@ class Connection extends Thread {
 	DataInputStream in;
 	DataOutputStream out;
 	Socket clientSocket;
-        Counter counter = new Counter();
+        boolean hasWon;
+//        Counter counter = new Counter();
         
 	public Connection (Socket aClientSocket) {
 	    try {
@@ -72,20 +76,32 @@ class Connection extends Thread {
                 //counter[client_id]++
                 
                 if(Boolean.valueOf(msg[2])){
-                    counter.verifyWinner(Integer.valueOf(msg[0]), Integer.valueOf(msg[1]));
-                    data = String.valueOf(counter.hasWon(Integer.valueOf(msg[0])));
+                    counter.verifyWinner(Integer.valueOf(msg[0].trim()), Integer.valueOf(msg[1].trim()));
+//                    System.out.println("ROUND " + msg[1]);
+                    hasWon = counter.hasWon(Integer.valueOf(msg[0]));
+                    data = String.valueOf(hasWon);
+//                      data = String.valueOf(true);
                 }
                 
                 System.out.println("Message received from: " + clientSocket.getRemoteSocketAddress());
                 
+                
 		out.writeUTF(data);
+                
+                //Do something here to initialize new round
+                if(hasWon){
+                    Thread.sleep(5000);
+                    System.out.println("NUEVA RONDA");
+                }
 	    } 
             catch(EOFException e) {
                 System.out.println("EOF:"+e.getMessage());
 	    } 
             catch(IOException e) {
                 System.out.println("IO:"+e.getMessage());
-	    } finally {
+	    } catch (InterruptedException ex) {
+                Logger.getLogger(TCPServerThread.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
                 try {
                     clientSocket.close();
                 } catch (IOException e){

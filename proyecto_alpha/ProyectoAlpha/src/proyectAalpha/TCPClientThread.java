@@ -9,14 +9,18 @@ import java.net.*;
 import java.io.*;
 
 public class TCPClientThread extends Thread{
-    public String message;
+    public String message = " ";
     public Won won;
     
-    TCPClientThread(String msg, Won w){
-        message = msg;
+    TCPClientThread(Won w){
+
         won = w;
     }
-        
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+       
 
     public  void run () {
 
@@ -30,8 +34,9 @@ public class TCPClientThread extends Thread{
 		DataOutputStream out =
 			new DataOutputStream( s.getOutputStream());
 		out.writeUTF(message);        	// UTF is a string encoding 
-                
+                System.out.println("Sale mensaje TCP");
 		String data = in.readUTF();
+                System.out.println("Llega mensaje TCP");
                 if(Boolean.valueOf(data)){
                     won.setWon(true);
                 }

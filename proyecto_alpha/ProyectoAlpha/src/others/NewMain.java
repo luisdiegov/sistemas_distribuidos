@@ -23,6 +23,7 @@ public class NewMain {
         numero a = new numero();
         a.num = 1;
         add1(a);
+        a = new numero();
         System.out.println(a.num);
         
     }
@@ -33,6 +34,6 @@ class numero{
     public int num;
     
     public numero(){
-        
+        num = 6;
     }
 }

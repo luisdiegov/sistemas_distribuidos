@@ -21,8 +21,12 @@ public class main {
         MoleLauncherThread moleThread = new MoleLauncherThread();
         moleThread.start(); //Multicast UDP socket sender
         
+        //TCPServer
+        TCPServerThread tcpsr = new TCPServerThread();
+        tcpsr.start();
+        
         //Client(s)
-        int clientNum = 1;
+        int clientNum = 3;
         for(int i=0; i<clientNum; i++){
             ClientThread ct = new ClientThread();
             ct.start(); //Multicast UDP socket receiver

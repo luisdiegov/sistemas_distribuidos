@@ -20,25 +20,29 @@ public class MoleGrid extends javax.swing.JFrame {
     private static int UNIQUE_ID = 0;
     private int clientId;
     private int roundNo;
+    private int answer;
     private Won won = new Won();
     
     public MoleGrid() {
         clientId =  UNIQUE_ID++;
-        initComponents();
+        initComponents(); 
+       
     }
     
-    public void sendMessage(){
+    public void sendMessage(boolean b){
         
-//        String message;
-//        TCPClientThread tcpct = new TCPClientThread();
+        String message;
+        TCPClientThread tcpct = new TCPClientThread(won);
+        
+        message = clientId + " " + roundNo + " " + b;//client_id, round, answer
+        tcpct.setMessage(message);
+//        System.out.println("se mando click");
 //        
-//        
-//        
-//        tcpct.run(message, won);
-//        
-//        if(won.hasWon()){
-//            System.out.println("GANASTE!");
-//        }
+        tcpct.start();
+        
+        if(won.hasWon()){
+            System.out.println("GANASTE!");
+        }
     }
     
     public void reset(){
@@ -125,6 +129,12 @@ public class MoleGrid extends javax.swing.JFrame {
     public void setRoundNo(int roundNo) {
         this.roundNo = roundNo;
     }
+
+    public void setAnswer(int answer) {
+        this.answer = answer;
+    }
+    
+    
     
    
     /**
@@ -145,6 +155,7 @@ public class MoleGrid extends javax.swing.JFrame {
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -156,8 +167,18 @@ public class MoleGrid extends javax.swing.JFrame {
         });
 
         jButton2.setText("b2");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("b3");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("b4");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -167,14 +188,41 @@ public class MoleGrid extends javax.swing.JFrame {
         });
 
         jButton5.setText("b5");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton6.setText("b6");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jButton7.setText("b7");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jButton8.setText("b8");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         jButton9.setText("b9");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("GANASTESSS");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -188,6 +236,7 @@ public class MoleGrid extends javax.swing.JFrame {
                     .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -205,7 +254,9 @@ public class MoleGrid extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(46, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
@@ -223,16 +274,84 @@ public class MoleGrid extends javax.swing.JFrame {
                 .addGap(23, 23, 23))
         );
 
+        jLabel1.setVisible(false);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling c
+        System.out.println("click 1");
+        disableAll();
+        boolean b = (answer==1);
+        System.out.println("boool " + b);
+        sendMessage(b);
+        jLabel1.setVisible(won.hasWon());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
+        disableAll();
+        boolean b = (answer==4);
+        sendMessage(b);
+        jLabel1.setVisible(won.hasWon());
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        disableAll();
+        boolean b = (answer==2);
+        sendMessage(b);
+        jLabel1.setVisible(won.hasWon());
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        disableAll();
+        boolean b = (answer==3);
+        sendMessage(b);
+        jLabel1.setVisible(won.hasWon());
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        disableAll();
+        boolean b = (answer==5);
+        sendMessage(b);
+        jLabel1.setVisible(won.hasWon());
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        disableAll();
+        boolean b = (answer==6);
+        sendMessage(b);
+        jLabel1.setVisible(won.hasWon());
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        disableAll();
+        boolean b = (answer==7);
+        sendMessage(b);
+        jLabel1.setVisible(won.hasWon());
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        disableAll();
+        boolean b = (answer==8);
+        sendMessage(b);
+        jLabel1.setVisible(won.hasWon());
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+        disableAll();
+        boolean b = (answer==9);
+        sendMessage(b);
+        jLabel1.setVisible(won.hasWon());
+    }//GEN-LAST:event_jButton9ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -280,5 +399,6 @@ public class MoleGrid extends javax.swing.JFrame {
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
