@@ -21,9 +21,10 @@ import java.util.logging.Logger;
 public class MoleLauncherThread extends Thread {
     
     private int roundNumber = 0;
+    private Counter counter;
     
-    public MoleLauncherThread(){
-        
+    public MoleLauncherThread(Counter counter){
+        this.counter = counter;
     }
     
     public void run(){
@@ -41,13 +42,21 @@ public class MoleLauncherThread extends Thread {
                 String myMessage;
                 
                 while(true){
-                    myMessage = String.valueOf(rand.nextInt(9-1) + 1) + " " + String.valueOf(roundNumber); //Generates int between 1-9, roundNumber
+                    //Generates int between 1-9, roundNumber, hasWon, winner
+                    myMessage = String.valueOf(rand.nextInt(9-1) + 1) + " " + String.valueOf(roundNumber) + 
+                            " " + counter.getWon() + " " + counter.getWinner() + " control";
+                    System.out.println("Message "+myMessage);
                     byte [] m = myMessage.getBytes();
                     DatagramPacket messageOut = 
                             new DatagramPacket(m, m.length, group, 6789);
                     s.send(messageOut);
                     roundNumber++;
-                    Thread.sleep(2000);
+                    
+                    if(counter.getWon()){
+                        counter.reset();
+                    }else{                    
+                    Thread.sleep(3000);
+                    }
                 }
                 
 

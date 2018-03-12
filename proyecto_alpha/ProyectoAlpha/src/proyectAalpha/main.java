@@ -14,21 +14,25 @@ public class main {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         // TODO code application logic here
         
+        //Class that is going to be passed as a pointer to maintain comunication
+        //between threads
+        Counter counter = new Counter();
+        
         //Mole launcher, runs forever
-        MoleLauncherThread moleThread = new MoleLauncherThread();
+        MoleLauncherThread moleThread = new MoleLauncherThread(counter);
         moleThread.start(); //Multicast UDP socket sender
         
         //TCPServer
-        TCPServerThread tcpsr = new TCPServerThread();
+        TCPServerThread tcpsr = new TCPServerThread(counter);
         tcpsr.start();
         
         //Client(s)
         int clientNum = 3;
         for(int i=0; i<clientNum; i++){
-            ClientThread ct = new ClientThread();
+            ClientThread ct = new ClientThread(i);
             ct.start(); //Multicast UDP socket receiver
         }
         

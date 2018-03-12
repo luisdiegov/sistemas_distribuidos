@@ -10,6 +10,8 @@ import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
 import java.net.SocketException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -19,8 +21,8 @@ public class ClientThread extends Thread{
 
     private int clientId;
     
-    public ClientThread(){
-        
+    public ClientThread(int i){
+        clientId = i;
     }
     
     public void run(){
@@ -31,11 +33,12 @@ public class ClientThread extends Thread{
                 InetAddress group = InetAddress.getByName("228.5.6.7"); // destination multicast group 
 	    	s = new MulticastSocket(6789);
 	   	s.joinGroup(group); 
-                MoleGrid mg = new MoleGrid();
+                MoleGrid mg = new MoleGrid(clientId);
                 mg.setVisible(true);
                 String message;
                 String tokenized[];
-                int cell, roundNumber;
+                int cell, roundNumber, winner;
+                boolean hasWon;
 
 	    	byte[] buffer = new byte[1000];
  	   	for(int i=0; i< 100; i++) {
@@ -45,17 +48,31 @@ public class ClientThread extends Thread{
  		    s.receive(messageIn);
                     mg.reset();
                     mg.enableAll();
-                    message = new String(messageIn.getData()); //cell, roundNumber
+                    message = new String(messageIn.getData()); //cell, roundNumber, hasWon, winner
                     tokenized = message.split("\\s+");
-//                    System.out.println("0: " + tokenized[0] + " 1: " + tokenized[1]);
+                    System.out.println("0: " + tokenized[0] + " 1: " + tokenized[1]
+                    + " 2: " + tokenized[2] + " 3: " + tokenized[3]);
 //                    System.out.println("length " + tokenized.length);
+
                     cell = Integer.valueOf(tokenized[0]);
                     roundNumber = Integer.valueOf(tokenized[1].trim());
+                    hasWon = Boolean.valueOf(tokenized[2].trim());
+                    winner = Integer.valueOf(tokenized[3].trim());                    
+                    
                     mg.setCell(cell);
                     mg.setAnswer(cell);
                     mg.setRoundNo(roundNumber);
-                    System.out.println(cell);
+//                    System.out.println(cell);
 // 		    System.out.println(message);
+
+                    if(hasWon){
+                        mg.setWinner(winner);
+                        mg.disableAll();
+                        Thread.sleep(3000);
+                        mg.resetGrid();
+                        mg.enableAll();
+                    }
+                    
   	     	}
 	    	s.leaveGroup(group);		
  	    }
@@ -64,7 +81,9 @@ public class ClientThread extends Thread{
 	 }
          catch (IOException e){
              System.out.println("IO: " + e.getMessage());
-         }
+         } catch (InterruptedException ex) {
+            Logger.getLogger(ClientThread.class.getName()).log(Level.SEVERE, null, ex);
+        }
 	 finally {
             if(s != null) s.close();
         }

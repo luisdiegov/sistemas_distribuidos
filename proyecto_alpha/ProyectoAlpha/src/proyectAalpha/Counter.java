@@ -14,6 +14,8 @@ public class Counter {
     private int[] counter = new int[100]; //score counter for each client
     private boolean[] roundWon = new boolean[1000]; //registers if someone has won that round
     private static final int POINTS_TO_WIN = 3;
+    private boolean won = false;
+    private int winner;
 
     public Counter() {
         
@@ -22,12 +24,12 @@ public class Counter {
 //    public int[] getCounter() {
 //        return counter;
 //    }
-
+    
     public void setCounter(int[] counter) {
         this.counter = counter;
     }
     
-    private void reset(){
+    public synchronized void reset(){
         for(int i = 0; i<counter.length ; i++){
             counter[i] = 0;
         }
@@ -35,19 +37,21 @@ public class Counter {
         for(int i = 0; i<roundWon.length; i++){
             roundWon[i] = false;
         }
+        won = false;
+        winner = 0;
     }
     
     //Verifies if someone has won that round
     public synchronized boolean verifyWinner(int client, int round){
         boolean res = false;
         if(roundWon[round] == false){ //If no one has one the round, increase score
-//            System.out.println("CLIENTE " + client);            
             res=true;
             roundWon[round] = res;
-//           System.out.println("Cliente antes" + counter[client]);
             counter[client]++;
-//            System.out.println("Cliente despues" + counter[client]);
-            
+            if(counter[client]>=POINTS_TO_WIN){
+                won = true;
+                winner = client;
+            }
         }
         return res;
     }
@@ -68,8 +72,12 @@ public class Counter {
         this.roundWon = round;
     }
 
+    public synchronized boolean getWon() {
+        return won;
+    }
 
-    
-    
+    public synchronized int getWinner() {
+        return winner;
+    }
     
 }

@@ -23,10 +23,10 @@ import java.util.logging.Logger;
 public class TCPServerThread extends Thread{
     
 ////    public int[] counter = new int[10];
-    private Counter counter = new Counter();// Class that mainains registry  
+    private Counter counter;// Class that mainains registry  
    
-    public TCPServerThread(){
-        
+    public TCPServerThread(Counter counter){
+        this.counter = counter;
     }
     
     public void run () {

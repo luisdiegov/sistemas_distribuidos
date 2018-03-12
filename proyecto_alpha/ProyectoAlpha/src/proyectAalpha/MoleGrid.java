@@ -23,10 +23,22 @@ public class MoleGrid extends javax.swing.JFrame {
     private int answer;
     private Won won = new Won();
     
-    public MoleGrid() {
-        clientId =  UNIQUE_ID++;
+    public MoleGrid(int i) {
+        clientId =  i;
         initComponents(); 
-       
+        jLabel1.setVisible(true);
+        jLabel2.setText("Jugador " + String.valueOf(clientId));
+    }
+    
+    public void resetGrid() throws InterruptedException{
+        Thread.sleep(2000);
+        jLabel1.setText("Nuevo juego");
+        Thread.sleep(2000);
+        jLabel1.setText("Nadie ha ganado");
+    }
+    
+    public void newGame(){
+        jLabel1.setText("Nuevo juego");
     }
     
     public void sendMessage(boolean b){
@@ -43,6 +55,23 @@ public class MoleGrid extends javax.swing.JFrame {
         if(won.hasWon()){
             System.out.println("GANASTE!");
         }
+    }
+    
+    public int getId(){
+        return clientId;
+    }
+    
+    public void setWinner(int winner){
+        String text;        
+        jLabel1.setVisible(true);
+        
+        if(winner == clientId){
+            text = "GANASTE";
+        }else{
+            text = "Ganó el jugador " + String.valueOf(winner);
+        }
+        
+        jLabel1.setText(text);
     }
     
     public void reset(){
@@ -156,6 +185,7 @@ public class MoleGrid extends javax.swing.JFrame {
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -222,41 +252,48 @@ public class MoleGrid extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("GANASTESSS");
+        jLabel1.setText("Nadie ha ganado");
+
+        jLabel2.setText("jLabel2");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton7)
-                    .addComponent(jButton4)
-                    .addComponent(jButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton2)
+                        .addGap(42, 42, 42)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton7)
+                            .addComponent(jButton4)
+                            .addComponent(jButton1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton6))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton9))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton3))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton6))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton9)))
-                .addContainerGap(58, Short.MAX_VALUE))
+                        .addGap(76, 76, 76)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
@@ -271,7 +308,9 @@ public class MoleGrid extends javax.swing.JFrame {
                     .addComponent(jButton7)
                     .addComponent(jButton8)
                     .addComponent(jButton9))
-                .addGap(23, 23, 23))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         jLabel1.setVisible(false);
@@ -286,7 +325,7 @@ public class MoleGrid extends javax.swing.JFrame {
         boolean b = (answer==1);
         System.out.println("boool " + b);
         sendMessage(b);
-        jLabel1.setVisible(won.hasWon());
+        //jLabel1.setVisible(won.hasWon());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -294,7 +333,7 @@ public class MoleGrid extends javax.swing.JFrame {
         disableAll();
         boolean b = (answer==4);
         sendMessage(b);
-        jLabel1.setVisible(won.hasWon());
+//        jLabel1.setVisible(won.hasWon());
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -302,7 +341,7 @@ public class MoleGrid extends javax.swing.JFrame {
         disableAll();
         boolean b = (answer==2);
         sendMessage(b);
-        jLabel1.setVisible(won.hasWon());
+//        jLabel1.setVisible(won.hasWon());
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -310,7 +349,7 @@ public class MoleGrid extends javax.swing.JFrame {
         disableAll();
         boolean b = (answer==3);
         sendMessage(b);
-        jLabel1.setVisible(won.hasWon());
+//        jLabel1.setVisible(won.hasWon());
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -318,7 +357,7 @@ public class MoleGrid extends javax.swing.JFrame {
         disableAll();
         boolean b = (answer==5);
         sendMessage(b);
-        jLabel1.setVisible(won.hasWon());
+//        jLabel1.setVisible(won.hasWon());
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -326,7 +365,7 @@ public class MoleGrid extends javax.swing.JFrame {
         disableAll();
         boolean b = (answer==6);
         sendMessage(b);
-        jLabel1.setVisible(won.hasWon());
+//        jLabel1.setVisible(won.hasWon());
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -334,7 +373,7 @@ public class MoleGrid extends javax.swing.JFrame {
         disableAll();
         boolean b = (answer==7);
         sendMessage(b);
-        jLabel1.setVisible(won.hasWon());
+//        jLabel1.setVisible(won.hasWon());
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
@@ -342,7 +381,7 @@ public class MoleGrid extends javax.swing.JFrame {
         disableAll();
         boolean b = (answer==8);
         sendMessage(b);
-        jLabel1.setVisible(won.hasWon());
+//        jLabel1.setVisible(won.hasWon());
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -350,7 +389,7 @@ public class MoleGrid extends javax.swing.JFrame {
         disableAll();
         boolean b = (answer==9);
         sendMessage(b);
-        jLabel1.setVisible(won.hasWon());
+//        jLabel1.setVisible(won.hasWon());
     }//GEN-LAST:event_jButton9ActionPerformed
 
     /**
@@ -382,11 +421,7 @@ public class MoleGrid extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MoleGrid().setVisible(true);
-            }
-        });
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -400,5 +435,6 @@ public class MoleGrid extends javax.swing.JFrame {
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }
