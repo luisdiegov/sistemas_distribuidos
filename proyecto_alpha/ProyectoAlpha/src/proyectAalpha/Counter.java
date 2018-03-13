@@ -11,8 +11,8 @@ package proyectAalpha;
  * This class allows communication between TCP threads
  */
 public class Counter {
-    private int[] counter = new int[100]; //score counter for each client
-    private boolean[] roundWon = new boolean[1000]; //registers if someone has won that round
+    private int[] counter = new int[1000]; //score counter for each client
+    private boolean[] roundWon = new boolean[10000]; //registers if someone has won that round
     private static final int POINTS_TO_WIN = 3;
     private boolean won = false;
     private int winner;

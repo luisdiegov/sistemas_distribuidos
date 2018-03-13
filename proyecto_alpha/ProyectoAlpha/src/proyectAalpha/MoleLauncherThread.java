@@ -55,7 +55,7 @@ public class MoleLauncherThread extends Thread {
                     if(counter.getWon()){
                         counter.reset();
                     }else{                    
-                    Thread.sleep(3000);
+                    Thread.sleep(2000);
                     }
                 }
                 

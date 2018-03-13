@@ -50,8 +50,8 @@ public class ClientThread extends Thread{
                     mg.enableAll();
                     message = new String(messageIn.getData()); //cell, roundNumber, hasWon, winner
                     tokenized = message.split("\\s+");
-                    System.out.println("0: " + tokenized[0] + " 1: " + tokenized[1]
-                    + " 2: " + tokenized[2] + " 3: " + tokenized[3]);
+//                    System.out.println("0: " + tokenized[0] + " 1: " + tokenized[1]
+//                    + " 2: " + tokenized[2] + " 3: " + tokenized[3]);
 //                    System.out.println("length " + tokenized.length);
 
                     cell = Integer.valueOf(tokenized[0]);
