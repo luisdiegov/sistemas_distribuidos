@@ -61,7 +61,7 @@ public class MoleLauncherThread extends Thread {
                     i++;
                 }
                 
-                System.out.println("Terminan de enviarse mensajes");
+                System.out.println("FIN DEL JUEGO");
 	    	s.leaveGroup(group);		
  	    }
          catch (SocketException e){
