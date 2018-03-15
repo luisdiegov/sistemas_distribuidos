@@ -16,7 +16,7 @@ public class main {
      */
     public static void main(String[] args) throws InterruptedException {
         // TODO code application logic here
-        
+        System.setProperty("java.net.preferIPv4Stack","true");
         //Class that is going to be passed as a pointer to maintain comunication
         //between threads
         Counter counter = new Counter();
