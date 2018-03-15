@@ -40,8 +40,9 @@ public class MoleLauncherThread extends Thread {
                 Random rand = new Random();
                 int target;
                 String myMessage;
-                
-                while(true){
+                int numOfRounds = 100;
+                int i =0;
+                while(i<numOfRounds){
                     //Generates int between 1-9, roundNumber, hasWon, winner
                     myMessage = String.valueOf(rand.nextInt(9-1) + 1) + " " + String.valueOf(roundNumber) + 
                             " " + counter.getWon() + " " + counter.getWinner() + " control";
@@ -55,21 +56,20 @@ public class MoleLauncherThread extends Thread {
                     if(counter.getWon()){
                         counter.reset();
                     }else{                    
-                    Thread.sleep(2000);
+                    //Thread.sleep(2000);
                     }
+                    i++;
                 }
                 
-
-//	    	s.leaveGroup(group);		
+                System.out.println("Terminan de enviarse mensajes");
+	    	s.leaveGroup(group);		
  	    }
          catch (SocketException e){
              System.out.println("Socket: " + e.getMessage());
 	 }
          catch (IOException e){
              System.out.println("IO: " + e.getMessage());
-         } catch (InterruptedException ex) {
-            Logger.getLogger(MoleLauncherThread.class.getName()).log(Level.SEVERE, null, ex);
-        }
+         }
 	 finally {
             if(s != null) s.close();
         }

@@ -90,7 +90,6 @@ class Connection extends Thread {
                 
                 //Do something here to initialize new round
                 if(hasWon){
-                    Thread.sleep(5000);
                     System.out.println("NUEVA RONDA");
                 }
 	    } 
@@ -99,9 +98,7 @@ class Connection extends Thread {
 	    } 
             catch(IOException e) {
                 System.out.println("IO:"+e.getMessage());
-	    } catch (InterruptedException ex) {
-                Logger.getLogger(TCPServerThread.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
+	    } finally {
                 try {
                     clientSocket.close();
                 } catch (IOException e){
