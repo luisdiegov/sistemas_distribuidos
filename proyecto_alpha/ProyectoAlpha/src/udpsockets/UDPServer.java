@@ -6,7 +6,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package javaudpsockets;
+package udpsockets;
 
 import java.net.*;
 import java.io.*;

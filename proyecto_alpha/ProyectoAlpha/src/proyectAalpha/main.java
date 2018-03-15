@@ -30,7 +30,7 @@ public class main {
         tcpsr.start();
         
         //Client(s)
-        int clientNum = 10;
+        int clientNum = 1;
         for(int i=0; i<clientNum; i++){
             ClientThread ct = new ClientThread(i);
             ct.start(); //Multicast UDP socket receiver
