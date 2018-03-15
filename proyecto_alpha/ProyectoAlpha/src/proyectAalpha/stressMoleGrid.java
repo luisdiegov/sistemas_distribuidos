@@ -1,6 +1,6 @@
 package proyectAalpha;
 
-public class stressMoleGrid{
+public class stressMoleGrid {
 
     /**
      * Creates new form NewJFrame
@@ -10,39 +10,52 @@ public class stressMoleGrid{
     private int roundNo;
     private int answer;
     private Won won = new Won();
-    
+
     public stressMoleGrid(int i) {
-        clientId =  i;
+        clientId = i;
     }
-    
-    public void resetGrid(){
+
+    public void resetGrid() {
 
     }
-    
-    public void newGame(){
+
+    public void newGame() {
     }
-    
-    public void sendMessage(boolean b){
-        
+
+    public void sendMessage(boolean b) {
+
         String message;
         TCPClientThread tcpct = new TCPClientThread(won);
-        
+
         message = clientId + " " + roundNo + " " + b;//client_id, round, answer
         tcpct.setMessage(message);
 //        System.out.println("se mando click");
 //        
         tcpct.start();
-        
-        if(won.hasWon()){
+
+        if (won.hasWon()) {
             System.out.println("GANASTE!");
         }
     }
-    
-    public int getId(){
+
+    public void exitGame() {
+
+        String message;
+        TCPClientThread tcpct = new TCPClientThread(won);
+
+        message = "END";
+        tcpct.setMessage(message);
+//        System.out.println("se mando click");
+//        
+        tcpct.start();
+
+        System.out.println("El cliente [" + clientId + "] salió del juego");
+
+    }
+
+    public int getId() {
         return clientId;
     }
-    
-    
 
     public int getRoundNo() {
         return roundNo;
@@ -55,14 +68,13 @@ public class stressMoleGrid{
     public void setAnswer(int answer) {
         this.answer = answer;
     }
-                                                
+
     //simulate a click
-    public void selectCell(int cell) {                                         
-        boolean b = (answer==(cell));
-        System.out.println("salio: "+b+"la respuesta era "+answer+"y yo contesté "+(cell));
+    public void selectCell(int cell) {
+        boolean b = (answer == (cell));
+        System.out.println("Cliente: ["+clientId+"] Atinó: "+b+" Ronda ["+roundNo+"]");
         sendMessage(b);
 
-    }                                        
+    }
 
-                                        
 }

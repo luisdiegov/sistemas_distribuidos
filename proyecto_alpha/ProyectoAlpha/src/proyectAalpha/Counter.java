@@ -12,6 +12,7 @@ package proyectAalpha;
  */
 public class Counter {
     private int[] counter = new int[1000]; //score counter for each client
+    private int[] game = new int[1000]; //score counter for each client
     private boolean[] roundWon = new boolean[10000]; //registers if someone has won that round
     private static final int POINTS_TO_WIN = 3;
     private boolean won = false;
