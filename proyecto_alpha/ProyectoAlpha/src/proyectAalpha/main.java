@@ -35,13 +35,13 @@ public class main {
         
         // Assume default encoding.
             FileWriter fileWriter =
-                new FileWriter("prueba150_3.txt");
+                new FileWriter("prueba60_10.txt");
 
             // Always wrap FileWriter in BufferedWriter.
             BufferedWriter bufferedWriter =
                 new BufferedWriter(fileWriter);
         //Client(s)
-        int clientNum = 150;
+        int clientNum = 60;
         for(int i=0; i<clientNum; i++){
             ClientThread ct = new ClientThread(i,bufferedWriter);
             ct.start(); //Multicast UDP socket receiver
