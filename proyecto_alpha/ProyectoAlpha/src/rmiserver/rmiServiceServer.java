@@ -34,7 +34,7 @@ public class rmiServiceServer implements RmiService {
             RmiService stub = (RmiService) UnicastRemoteObject.exportObject(engine, 0);
             Registry registry = LocateRegistry.getRegistry();
             registry.rebind(name, stub);
-
+            System.out.println("Servidor Desplegado");
         } catch (RemoteException ex) {
             Logger.getLogger(rmiServiceServer.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -52,7 +52,7 @@ public class rmiServiceServer implements RmiService {
         } else if (credencial.getName().equals("luisdiegov") && credencial.getPassword().equals("456")) {
             return true;
         } else {
-            return false;   
+            return false;
         }
 
     }

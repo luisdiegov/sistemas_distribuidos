@@ -11,6 +11,8 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import rmiserver.elLogin;
+import rmiserver.login;
 
 /**
  *
@@ -43,9 +45,11 @@ public class main {
             RmiService rmi = (RmiService) registry.lookup(name);
             registry.rebind(name, rmi);
             Credencial credencial = new Credencial("lespam", "123");
-
+            elLogin log = new elLogin(0);
+            log.setVisible(true);
+            System.out.println(log.credencial.toString());
             System.out.println("resultado:"+rmi.login(credencial));
-            /*
+            
             //Class that is going to be passed as a pointer to maintain comunication
             //between threads
             Counter counter = new Counter();
@@ -64,7 +68,7 @@ public class main {
                 ClientThread ct = new ClientThread(i);
                 ct.start(); //Multicast UDP socket receiver
             }
-            */
+            
         } catch (RemoteException ex) {
             Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
         }

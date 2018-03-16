@@ -5,17 +5,22 @@
  */
 package rmiserver;
 
+import proyectAalpha.Credencial;
+
 /**
  *
  * @author LBRENESV
  */
 public class login extends javax.swing.JPanel {
-
+    public Credencial credencial;
+    public int clientId;
     /**
      * Creates new form login
      */
-    public login() {
+    public login(int i) {
         initComponents();
+        this.clientId=i;
+        this.credencial=new Credencial("","");
     }
 
     /**
@@ -32,6 +37,12 @@ public class login extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPasswordField1 = new javax.swing.JPasswordField();
+
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Dale!");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -85,8 +96,13 @@ public class login extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        credencial.setName(jTextField1.getText());
+        credencial.setPassword(jPasswordField1.getSelectedText());
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
