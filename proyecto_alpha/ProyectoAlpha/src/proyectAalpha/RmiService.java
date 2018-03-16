@@ -14,5 +14,6 @@ import java.rmi.RemoteException;
  */
 public interface RmiService extends Remote{
     // starts GUI
-    public boolean login ( Credencial credencial ) throws RemoteException;
+    public String ip ( Boolean bol ) throws RemoteException;
+    public String puertos ( Boolean bol ) throws RemoteException;
 }

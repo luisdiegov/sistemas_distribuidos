@@ -23,7 +23,7 @@ public class rmiServiceServer implements RmiService {
     public static void main(String[] args) {
 
         try {
-            System.setProperty("java.security.policy", "file:/C:/Users/LBRENESV/sistemas_distribuidos/proyecto_alpha/ProyectoAlpha/src/rmiserver/rmiserver.policy");
+            System.setProperty("java.security.policy", "file:/C:\\Users\\sdist\\sistemas_distribuidos\\proyecto_alpha\\ProyectoAlpha\\src\\rmiserver\\rmiserver.policy");
             if (System.getSecurityManager() == null) {
                 System.setSecurityManager(new SecurityManager());
             }
@@ -45,15 +45,23 @@ public class rmiServiceServer implements RmiService {
     }
 
     @Override
-    public boolean login(Credencial credencial) throws RemoteException {
-        //||credencial.getName().equals("luisdiegov")
-        if (credencial.getName().equals("lespam") && credencial.getPassword().equals("123")) {
-            return true;
-        } else if (credencial.getName().equals("luisdiegov") && credencial.getPassword().equals("456")) {
-            return true;
-        } else {
-            return false;
+    public String ip(Boolean bol) throws RemoteException {
+        String ipe="";
+        if(bol)
+        {
+            ipe="228.5.6.7";
         }
-
+        return ipe;
     }
+
+    @Override
+    public String puertos(Boolean bol) throws RemoteException {
+        String pto="";
+        if(bol)
+        {
+            pto="7896";
+        }
+        return pto;
+    }
+
 }

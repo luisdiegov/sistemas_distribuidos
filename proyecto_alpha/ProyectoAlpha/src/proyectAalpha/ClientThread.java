@@ -20,9 +20,11 @@ import java.util.logging.Logger;
 public class ClientThread extends Thread{
 
     private int clientId;
+    private String name;
     
-    public ClientThread(int i){
+    public ClientThread(int i,String name){
         clientId = i;
+        this.name = name;
     }
     
     public void run(){
@@ -33,7 +35,7 @@ public class ClientThread extends Thread{
                 InetAddress group = InetAddress.getByName("228.5.6.7"); // destination multicast group 
 	    	s = new MulticastSocket(6789);
 	   	s.joinGroup(group); 
-                MoleGrid mg = new MoleGrid(clientId);
+                MoleGrid mg = new MoleGrid(clientId,name);
                 mg.setVisible(true);
                 String message;
                 String tokenized[];

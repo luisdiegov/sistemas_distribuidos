@@ -19,15 +19,17 @@ public class MoleGrid extends javax.swing.JFrame {
      */
     private static int UNIQUE_ID = 0;
     private int clientId;
+    private String nombre;
     private int roundNo;
     private int answer;
     private Won won = new Won();
     
-    public MoleGrid(int i) {
+    public MoleGrid(int i,String name) {
         clientId =  i;
+        nombre = name;
         initComponents(); 
         jLabel1.setVisible(true);
-        jLabel2.setText("Jugador " + String.valueOf(clientId));
+        jLabel2.setText("Jugador " + String.valueOf(clientId)+ " "+nombre);
     }
     
     public void resetGrid() throws InterruptedException{

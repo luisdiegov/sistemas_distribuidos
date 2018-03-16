@@ -32,7 +32,7 @@ public class main {
             
 
 
-            System.setProperty("java.security.policy", "file:/C:\\Users\\LBRENESV\\sistemas_distribuidos\\proyecto_alpha\\ProyectoAlpha\\src\\proyectAalpha\\proyectAalpha.policy");
+            System.setProperty("java.security.policy", "file:/C:\\Users\\sdist\\sistemas_distribuidos\\proyecto_alpha\\ProyectoAlpha\\src\\proyectAalpha\\proyectAalpha.policy");
 
             if (System.getSecurityManager() == null) {
                 System.setSecurityManager(new SecurityManager());
@@ -45,10 +45,10 @@ public class main {
             RmiService rmi = (RmiService) registry.lookup(name);
             registry.rebind(name, rmi);
             Credencial credencial = new Credencial("lespam", "123");
-            elLogin log = new elLogin(0);
-            log.setVisible(true);
-            System.out.println(log.credencial.toString());
-            System.out.println("resultado:"+rmi.login(credencial));
+            
+            
+            
+            
             
             //Class that is going to be passed as a pointer to maintain comunication
             //between threads
@@ -65,8 +65,9 @@ public class main {
             //Client(s)
             int clientNum = 1;
             for (int i = 0; i < clientNum; i++) {
-                ClientThread ct = new ClientThread(i);
-                ct.start(); //Multicast UDP socket receiver
+                elLogin log = new elLogin(i);
+            log.setVisible(true);
+                
             }
             
         } catch (RemoteException ex) {
