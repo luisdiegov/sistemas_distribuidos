@@ -4,7 +4,7 @@
  */
 package proyectAalpha;
 
-import tcpsockets.*;
+
 import java.net.*;
 import java.io.*;
 
