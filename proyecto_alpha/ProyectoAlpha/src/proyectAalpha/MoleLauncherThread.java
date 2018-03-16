@@ -36,7 +36,7 @@ public class MoleLauncherThread extends Thread {
             s = new MulticastSocket(6789);
             s.joinGroup(group);
             //s.setTimeToLive(10);
-            System.out.println("Messages' TTL (Time-To-Live): " + s.getTimeToLive());
+            //System.out.println("Messages' TTL (Time-To-Live): " + s.getTimeToLive());
 
             Random rand = new Random();
             int target;
@@ -49,7 +49,7 @@ public class MoleLauncherThread extends Thread {
                 int randomNum = rand.nextInt((9 - 1) + 1);
                 myMessage = String.valueOf(randomNum) + " " + String.valueOf(roundNumber)
                         + " " + counter.getWon() + " " + counter.getWinner() + " control";
-                System.out.println("Message: Mole["+randomNum+"]Round["+roundNumber+"]someClientWonRound?["+counter.getWon()+"]Who?["+counter.getWinner()+"]");
+                //System.out.println("Message: Mole["+randomNum+"]Round["+roundNumber+"]someClientWonRound?["+counter.getWon()+"]Who?["+counter.getWinner()+"]");
                 byte[] m = myMessage.getBytes();
                 DatagramPacket messageOut
                         = new DatagramPacket(m, m.length, group, 6789);
@@ -60,7 +60,7 @@ public class MoleLauncherThread extends Thread {
                 if (counter.getWon()) {
                     counter.reset();
                     numberOfWonrounds++;
-                    System.out.println("numberOfWonrounds: "+numberOfWonrounds);
+                    //System.out.println("numberOfWonrounds: "+numberOfWonrounds);
                 } else {
                     Thread.sleep(300);
                 }
@@ -78,6 +78,7 @@ public class MoleLauncherThread extends Thread {
             s.send(messageOut);
             System.out.println("FIN DEL JUEGO (MoleLauncher)");
             s.leaveGroup(group);
+            
             
             
         } catch (SocketException e) {

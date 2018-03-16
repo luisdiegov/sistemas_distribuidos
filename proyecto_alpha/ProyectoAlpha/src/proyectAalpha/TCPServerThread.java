@@ -34,13 +34,13 @@ public class TCPServerThread extends Thread {
 //                Counter counter = new Counter(); //Score register
 
             while (true) {
-                System.out.println("Waiting for messages...TCP");
+                //System.out.println("Waiting for messages...TCP");
                 Socket clientSocket = listenSocket.accept();  // Listens for a connection to be made to this socket and accepts it. The method blocks until a connection is made. 
                 Connection c = new Connection(clientSocket);
                 c.start();
             }
         } catch (IOException e) {
-            System.out.println("Listen :" + e.getMessage());
+            //System.out.println("Listen :" + e.getMessage());
         }
     }
 
@@ -59,15 +59,16 @@ public class TCPServerThread extends Thread {
                 out = new DataOutputStream(clientSocket.getOutputStream());
 
             } catch (IOException e) {
-                System.out.println("Connection:" + e.getMessage());
+                //System.out.println("Connection:" + e.getMessage());
             }
         }
 
         @Override
         public void run() {
             try {			                 // an echo server
+                long startTime = System.currentTimeMillis();
                 String data = in.readUTF();
-                System.out.println("el msg de TCPServTh es " + data);
+                //System.out.println("el msg de TCPServTh es " + data);
                 if (!data.equals("END")) {
                 String[] msg = data.split("\\s+"); //client_id, round, answer
                 data = "false";
@@ -78,7 +79,7 @@ public class TCPServerThread extends Thread {
                 //counter[client_id]++
                 if (Boolean.valueOf(msg[2])) {
                     counter.verifyWinner(Integer.valueOf(msg[0].trim()), Integer.valueOf(msg[1].trim()));
-                    System.out.println("ROUND " + msg[1]);
+                    //System.out.println("ROUND " + msg[1]);
                     hasWon = counter.hasWon(Integer.valueOf(msg[0]));
                     data = String.valueOf(hasWon);
 //                      data = String.valueOf(true);
@@ -88,14 +89,14 @@ public class TCPServerThread extends Thread {
                 }
                 
 
-                System.out.println("Message received from: " + clientSocket.getRemoteSocketAddress());
+                //System.out.println("Message received from: " + clientSocket.getRemoteSocketAddress());
 
                 out.writeUTF(data);
 
                 //Do something here to initialize new round
                 if (hasWon) {
                     Thread.sleep(10);
-                    System.out.println("NUEVA RONDA");
+                    //System.out.println("NUEVA RONDA");
                 }
 
             } catch (EOFException e) {

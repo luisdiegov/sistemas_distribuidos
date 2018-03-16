@@ -44,13 +44,13 @@ public class MoleGrid extends javax.swing.JFrame {
     public void sendMessage(boolean b){
         
         String message;
-        TCPClientThread tcpct = new TCPClientThread(won);
+        //TCPClientThread tcpct = new TCPClientThread(won,);
         
         message = clientId + " " + roundNo + " " + b;//client_id, round, answer
-        tcpct.setMessage(message);
+        //tcpct.setMessage(message);
 //        System.out.println("se mando click");
 //        
-        tcpct.start();
+        //tcpct.start();
         
         if(won.hasWon()){
             System.out.println("GANASTE!");
